@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แบบฟอร์มคำร้องขอโอนย้ายสาขาวิชา</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to the custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* สไตล์เพิ่มเติมสำหรับ placeholder และตาราง */
+        input::placeholder, textarea::placeholder {
+            color: #9ca3af; /* สีเทาอ่อนสำหรับข้อความตัวอย่าง */
+        }
+        .opinion-table td {
+            /* @apply p-4 border border-gray-300 align-top; /* กำหนดสไตล์เซลล์ตาราง */
+            /* Removed @apply as it's not valid in inline style tags and replaced with direct Tailwind classes */
+            padding: 1rem; /* p-4 */
+            border: 1px solid #D1D5DB; /* border-gray-300 */
+            vertical-align: top; /* align-top */
+        }
+        /* กำหนดสไตล์สำหรับ radio button เพื่อให้ดูดีขึ้น */
+        .form-radio {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            vertical-align: middle;
+            height: 1.25rem; /* 20px */
+            width: 1.25rem; /* 20px */
+            border-radius: 9999px; /* วงกลม */
+            border: 2px solid #D1D5DB; /* border-gray-300 */
+            background-color: #ffffff; /* bg-white */
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+        }
+        .form-radio:checked {
+            background-color: #1b51a8; /* bg-blue-600 */
+            border-color: #154592; /* border-blue-600 */
+        }
+        .form-radio:checked::after {
+            content: '';
+            display: block;
+            height: 0.5rem; /* 8px */
+            width: 0.5rem; /* 8px */
+            border-radius: 9999px;
+            background-color: #ffffff;
+            margin: 3px; /* จัดกึ่งกลางจุด */
+        }
+        .form-radio:disabled {
+            background-color: #E5E7EB; /* bg-gray-200 */
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="max-w-4xl mx-auto p-6 lg:p-10">
+
+        <!-- Form Header Section -->
+        <div class="bg-white rounded-t-xl shadow-md p-6 lg:p-8 text-center border-b border-gray-200">
+            <!-- Changed text color from text-gray-800 to text-blue-700 -->
+            <h1 class="text-2xl lg:text-3xl font-bold text-blue-800 mb-2">คำร้องขอโอนย้ายสาขาวิชา</h1>
+            <p class="text-gray-500 mt-2 text-base">สำหรับนักศึกษาหลักสูตร 4 ปี</p>
+        </div>
+        
+        <form id="transferForm" class="bg-white rounded-b-xl shadow-lg p-6 lg:p-8 space-y-8">
+
+            <!-- Student Personal Information Section -->
+            <section class="space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">ข้อมูลส่วนตัวนักศึกษา</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="fullname" class="block text-sm font-medium text-gray-700 mb-1">ชื่อ-นามสกุล</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="นาย/นางสาว สมชาย ใจดี" required pattern="^[ก-๙a-zA-Z\s]+$"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                    <div>
+                        <label for="studentId" class="block text-sm font-medium text-gray-700 mb-1">รหัสนักศึกษา</label>
+                        <input type="text" id="studentId" name="studentId" placeholder="xxxxxxxxxx" required pattern="^\d{10}$"
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="oldFaculty" class="block text-sm font-medium text-gray-700 mb-1">คณะเดิม</label>
+                        <input type="text" id="oldFaculty" name="oldFaculty" placeholder="เช่น คณะเกษตรศาสตร์" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                    <div>
+                        <label for="oldMajor" class="block text-sm font-medium text-gray-700 mb-1">สาขาวิชาเดิม</label>
+                        <input type="text" id="oldMajor" name="oldMajor" placeholder="เช่น เทคโนโลยีการเกษตร" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="year" class="block text-sm font-medium text-gray-700 mb-1">ชั้นปี</label>
+                        <select id="year" name="year" required
+                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base bg-white">
+                            <option value="">-- กรุณาเลือก --</option>
+                            <option value="1">ปี 1</option>
+                            <option value="2">ปี 2</option>
+                            <option value="3">ปี 3</option>
+                            <option value="4">ปี 4</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-1">เบอร์โทร</label>
+                        <input type="tel" id="phone" name="phone" placeholder="0xx-xxx-xxxx" pattern="^0\d{9}$" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">อีเมล</label>
+                    <input type="email" id="email" name="email" placeholder="example@email.com" required
+                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                </div>
+
+                <!-- Added Semester Type Section -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">ประเภทภาคเรียน</label>
+                    <div class="mt-1 flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="semesterType" value="regular" class="form-radio" required>
+                            <span class="ml-2 text-gray-700">ภาคเรียนปกติ</span>
+                        </label>
+                        <label class="inline-flex items-center">
+                            <input type="radio" name="semesterType" value="supplementary" class="form-radio">
+                            <span class="ml-2 text-gray-700">ภาคเรียนสมทบ</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- End Added Semester Type Section -->
+
+            </section>
+
+            <!-- Transfer Information Section -->
+            <section class="border-t border-gray-200 pt-8 space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">ข้อมูลการโอนย้าย</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="newFaculty" class="block text-sm font-medium text-gray-700 mb-1">คณะปลายทาง</label>
+                        <input type="text" id="newFaculty" name="newFaculty" placeholder="เช่น คณะเทคโนโลยีสารสนเทศ" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                    <div>
+                        <label for="newMajor" class="block text-sm font-medium text-gray-700 mb-1">สาขาวิชาปลายทาง</label>
+                        <input type="text" id="newMajor" name="newMajor" placeholder="เช่น วิทยาการคอมพิวเตอร์" required
+                               class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Reasons and Supporting Documents Section -->
+            <section class="border-t border-gray-200 pt-8 space-y-6">
+                <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">เหตุผลและเอกสารประกอบ</h2>
+                <div>
+                    <label for="reason" class="block text-sm font-medium text-gray-700 mb-1">เหตุผลการโอนย้าย</label>
+                    <textarea id="reason" name="reason" rows="4" placeholder="กรุณาระบุเหตุผลที่ต้องการโอนย้าย..." required minlength="10"
+                              class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base"></textarea>
+                </div>
+
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label for="transcript" class="block text-sm font-medium text-gray-700 mb-1">แนบ Transcript</label>
+                        <input type="file" id="transcript" name="transcript" accept=".pdf" required
+                               class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors cursor-pointer">
+                    </div>
+                    <div>
+                        <label for="petition" class="block text-sm font-medium text-gray-700 mb-1">แนบเอกสารคำร้อง</label>
+                        <input type="file" id="petition" name="petition" accept=".pdf" required
+                               class="mt-1 block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 transition-colors cursor-pointer">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section for Faculty/Staff (Do Not Fill) -->
+            <section class="border-t border-gray-200 pt-8 space-y-6 bg-gray-50 p-6 rounded-lg">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 border-b pb-2">สำหรับอาจารย์/เจ้าหน้าที่ (ไม่ต้องกรอก)</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse border border-gray-300 opinion-table mb-6 text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 font-semibold">
+                                <th class="p-3 border border-gray-300">ความเห็นของสาขาวิชาเดิม</th>
+                                <th class="p-3 border border-gray-300">ความเห็นของสาขาวิชาที่ขอโอนย้าย</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(2) ความเห็นจากอาจารย์ที่ปรึกษา</h3>
+                                            <textarea name="advisorOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>อาจารย์ที่ปรึกษา: <input type="text" name="advisorName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>ประธานกรรมการบริหารหลักสูตร: <input type="text" name="oldMajorChairman" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="oldMajorDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(5) ความเห็นของประธานกรรมการบริหารหลักสูตร</h3>
+                                            <textarea name="newMajorOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>ประธานกรรมการบริหารหลักสูตร: <input type="text" name="newMajorChairman" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="newMajorDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3 class="text-lg font-semibold text-gray-800 mb-4 mt-6">มท. 16 หน้า 2</h3>
+                    <table class="w-full border-collapse border border-gray-300 opinion-table mb-6 text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 font-semibold">
+                                <th class="p-3 border border-gray-300">ความเห็นของสาขาวิชาเดิม</th>
+                                <th class="p-3 border border-gray-300">ความเห็นของสาขาวิชาที่ขอโอนย้าย</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(3) ความเห็นของประธานกรรมการบริหารหลักสูตร</h3>
+                                            <textarea name="oldMajorChairmanOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>ประธานกรรมการบริหารหลักสูตร: <input type="text" name="oldMajorChairman2" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="oldMajorChairmanDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(6) ความเห็นคณบดีคณะ</h3>
+                                            <div class="flex flex-col space-y-2">
+                                                <label class="flex items-center text-gray-700">
+                                                    <input type="radio" name="deanOpinion" value="approve" disabled class="form-radio">
+                                                    <span class="ml-2">อนุมัติ</span>
+                                                </label>
+                                                <label class="flex items-center text-gray-700">
+                                                    <input type="radio" name="deanOpinion" value="disapprove" disabled class="form-radio">
+                                                    <span class="ml-2">ไม่อนุมัติ</span>
+                                                </label>
+                                            </div>
+                                            <textarea name="deanReason" rows="4" readonly placeholder="เหตุผล..."
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>คณบดีคณะ: <input type="text" name="deanName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="deanDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- New tables for sections (4), (7), (8), (9), and (10) based on the image -->
+                <div class="overflow-x-auto mt-6">
+                    <table class="w-full border-collapse border border-gray-300 opinion-table mb-6 text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 font-semibold">
+                                <th class="p-3 border border-gray-300">ความเห็นคณบดีคณะ</th>
+                                <th class="p-3 border border-gray-300">งานเงินรายได้ กองคลัง</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Section (4) Dean's Opinion -->
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(4) ความเห็นคณบดีคณะ</h3>
+                                            <textarea name="deanOpinion2" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                            <div class="flex flex-col space-y-2">
+                                                <label class="flex items-center text-gray-700">
+                                                    <input type="radio" name="deanOpinionFinal" value="approve" disabled class="form-radio">
+                                                    <span class="ml-2">เห็นชอบ</span>
+                                                </label>
+                                                <label class="flex items-center text-gray-700">
+                                                    <input type="radio" name="deanOpinionFinal" value="disapprove" disabled class="form-radio">
+                                                    <span class="ml-2">ไม่เห็นชอบ</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>คณบดีคณะ: <input type="text" name="deanName2" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="deanDate2" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- Section (7) Revenue Department, Treasury -->
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(7) งานเงินรายได้ กองคลัง ชั้น 1 สำนักงานอธิการบดี</h3>
+                                            <p class="text-sm text-gray-600 mb-2">ได้ชำระเงินจำนวน 500 บาท เป็นที่เรียบร้อยแล้ว</p>
+                                            <p class="text-sm text-gray-600 mb-4">และได้ออกใบเสร็จรับเงินเลขที่: <input type="text" name="receiptNumber" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"> เลขที่</p>
+                                            <textarea name="financeOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>ผู้รับเงิน: <input type="text" name="cashierName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>นักวิชาการเงินและบัญชี: <input type="text" name="accountantName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="accountantDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="overflow-x-auto mt-6">
+                    <table class="w-full border-collapse border border-gray-300 opinion-table mb-6 text-sm">
+                        <thead>
+                            <tr class="bg-gray-100 text-gray-700 font-semibold">
+                                <th class="p-3 border border-gray-300">ความเห็นผู้อำนวยการสำนักบริการและพัฒนาวิชาการ</th>
+                                <th class="p-3 border border-gray-300">ความเห็นหัวหน้ากลุ่มงานทะเบียนเรียน</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <!-- Section (8) Opinion of the Director of Academic Services and Development Office -->
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(8) ความเห็นผู้อำนวยการสำนักบริการและพัฒนาวิชาการ</h3>
+                                            <textarea name="academicServiceOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>ผู้อำนวยการสำนักบริการและพัฒนาวิชาการ: <input type="text" name="academicServiceManagerName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="academicServiceManagerDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <!-- Section (9) Opinion of the Head of the Registration Group -->
+                                <td class="align-top p-4 border border-gray-300">
+                                    <div class="flex flex-col h-full">
+                                        <div class="flex-grow space-y-4">
+                                            <h3 class="text-base font-medium text-gray-700">(9) ความเห็นหัวหน้ากลุ่มงานทะเบียนเรียน</h3>
+                                            <textarea name="registrarOpinion" rows="4" readonly
+                                                class="block w-full bg-gray-100 rounded-md border-gray-300 shadow-inner p-2 text-gray-700 cursor-not-allowed"></textarea>
+                                        </div>
+                                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                                            <div class="flex items-center space-x-2 mb-2">
+                                                <span>(...................................................)</span>
+                                            </div>
+                                            <div>หัวหน้ากลุ่มงานทะเบียนเรียน: <input type="text" name="registrarName" readonly class="bg-gray-100 border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                                            <div>วันที่: <input type="text" name="registrarDate" readonly class="bg-gray-100 border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Section (10) For the Operating Officer -->
+                <div class="overflow-x-auto mt-6">
+                    <div class="p-4 border border-gray-300 bg-gray-100 rounded-lg">
+                        <h3 class="text-base font-medium text-gray-700 mb-2">(10) สำหรับเจ้าหน้าที่ผู้ดำเนินการ</h3>
+                        <p class="text-sm text-gray-600 mb-2">ดำเนินการโอนย้ายสาขาวิชาในระบบเรียบร้อยแล้ว</p>
+                        <p class="text-sm text-gray-600 mb-4">รหัสนักศึกษาใหม่คือ: <input type="text" name="newStudentId" readonly class="bg-white border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></p>
+                        <div class="mt-4 text-xs text-gray-600 space-y-2">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span>(...................................................)</span>
+                            </div>
+                            <div>ตำแหน่ง นักวิชาการศึกษา: <input type="text" name="officerPosition" readonly class="bg-white border-b border-gray-300 w-full p-1 text-gray-700 cursor-not-allowed"></div>
+                            <div>วันที่: <input type="text" name="officerDate" readonly class="bg-white border-b border-gray-300 w-24 p-1 text-gray-700 cursor-not-allowed"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Notes Section -->
+            <section class="border-t border-gray-200 pt-8 space-y-4">
+                <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-4 border-b pb-2">หมายเหตุ</h2>
+                <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
+                    <li><span class="font-bold">การยื่นคำร้องขอโอนย้ายสาขาวิชาภายในคณะ และต่างคณะ</span> ให้ดำเนินการดังนี้...</li>
+                    <li><span class="font-bold">นักศึกษาโอนย้ายสาขาวิชาเดิม</span> จะต้องมีผลการศึกษาอยู่ในสาขาวิชาที่ขอโอนย้ายมาแล้ว...</li>
+                    <li><span class="font-bold">นักศึกษาโอนย้ายสาขาวิชาเดิม</span> จะต้องมีผลการศึกษาอยู่ในสาขาวิชาที่ขอโอนย้ายมาไม่ต่ำกว่า 2 ภาคการศึกษา</li>
+                    <li><span class="font-bold">หลักสูตร 4 ปี</span> จะต้องมีผลการศึกษาอยู่ในสาขาวิชาที่ขอโอนย้ายมาไม่ต่ำกว่า 4 ภาคการศึกษา</li>
+                </ul>
+            </section>
+            
+            <!-- Submit Button Section -->
+            <div class="flex justify-end pt-8 border-t border-gray-200">
+                <button type="submit"
+                        class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-lg">
+                    ส่งคำร้อง
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <!-- Link to the JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
