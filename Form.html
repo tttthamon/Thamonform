@@ -3,52 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>แบบฟอร์มคำร้องขอโอนย้ายสาขาวิชา</title>
+    <title>แบบฟอร์มคำร้องขอโอนย้ายสาขาวิชาต่างคณะ</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Link to the custom CSS file -->
+    
     <link rel="stylesheet" href="style.css">
     <style>
-        /* สไตล์เพิ่มเติมสำหรับ placeholder และตาราง */
+        
         input::placeholder, textarea::placeholder {
-            color: #9ca3af; /* สีเทาอ่อนสำหรับข้อความตัวอย่าง */
+            color: #9ca3af; 
         }
         .opinion-table td {
-            /* @apply p-4 border border-gray-300 align-top; /* กำหนดสไตล์เซลล์ตาราง */
-            /* Removed @apply as it's not valid in inline style tags and replaced with direct Tailwind classes */
-            padding: 1rem; /* p-4 */
-            border: 1px solid #D1D5DB; /* border-gray-300 */
-            vertical-align: top; /* align-top */
+           
+            padding: 1rem; 
+            border: 1px solid #D1D5DB; 
+            vertical-align: top; 
         }
-        /* กำหนดสไตล์สำหรับ radio button เพื่อให้ดูดีขึ้น */
+       
         .form-radio {
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
             display: inline-block;
             vertical-align: middle;
-            height: 1.25rem; /* 20px */
-            width: 1.25rem; /* 20px */
-            border-radius: 9999px; /* วงกลม */
-            border: 2px solid #D1D5DB; /* border-gray-300 */
-            background-color: #ffffff; /* bg-white */
+            height: 1.25rem; 
+            width: 1.25rem; 
+            border-radius: 9999px; 
+            border: 2px solid #D1D5DB; 
+            background-color: #ffffff; 
             transition: all 0.15s ease-in-out;
             cursor: pointer;
         }
         .form-radio:checked {
-            background-color: #1b51a8; /* bg-blue-600 */
-            border-color: #154592; /* border-blue-600 */
+            background-color: #1b51a8; 
+            border-color: #154592; 
         }
         .form-radio:checked::after {
             content: '';
             display: block;
-            height: 0.5rem; /* 8px */
-            width: 0.5rem; /* 8px */
+            height: 0.5rem;
+            width: 0.5rem; 
             border-radius: 9999px;
             background-color: #ffffff;
-            margin: 3px; /* จัดกึ่งกลางจุด */
+            margin: 3px; 
         }
         .form-radio:disabled {
-            background-color: #E5E7EB; /* bg-gray-200 */
+            background-color: #E5E7EB; 
             cursor: not-allowed;
             opacity: 0.7;
         }
@@ -57,16 +56,16 @@
 <body class="bg-gray-100 font-sans antialiased">
     <div class="max-w-4xl mx-auto p-6 lg:p-10">
 
-        <!-- Form Header Section -->
+        
         <div class="bg-white rounded-t-xl shadow-md p-6 lg:p-8 text-center border-b border-gray-200">
-            <!-- Changed text color from text-gray-800 to text-blue-700 -->
+            
             <h1 class="text-2xl lg:text-3xl font-bold text-blue-800 mb-2">คำร้องขอโอนย้ายสาขาวิชา</h1>
             <p class="text-gray-500 mt-2 text-base">สำหรับนักศึกษาหลักสูตร 4 ปี</p>
         </div>
         
         <form id="transferForm" class="bg-white rounded-b-xl shadow-lg p-6 lg:p-8 space-y-8">
 
-            <!-- Student Personal Information Section -->
+           
             <section class="space-y-6">
                 <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">ข้อมูลส่วนตัวนักศึกษา</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -120,7 +119,7 @@
                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 transition-colors p-2.5 text-base">
                 </div>
 
-                <!-- Added Semester Type Section -->
+                
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-2">ประเภทภาคเรียน</label>
                     <div class="mt-1 flex flex-col sm:flex-row sm:space-x-4 space-y-2 sm:space-y-0">
@@ -134,11 +133,11 @@
                         </label>
                     </div>
                 </div>
-                <!-- End Added Semester Type Section -->
+                
 
             </section>
 
-            <!-- Transfer Information Section -->
+            
             <section class="border-t border-gray-200 pt-8 space-y-6">
                 <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">ข้อมูลการโอนย้าย</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -155,7 +154,7 @@
                 </div>
             </section>
 
-            <!-- Reasons and Supporting Documents Section -->
+            
             <section class="border-t border-gray-200 pt-8 space-y-6">
                 <h2 class="text-xl lg:text-2xl font-bold text-blue-800 mb-6 border-b pb-2">เหตุผลและเอกสารประกอบ</h2>
                 <div>
@@ -178,7 +177,7 @@
                 </div>
             </section>
 
-            <!-- Section for Faculty/Staff (Do Not Fill) -->
+            
             <section class="border-t border-gray-200 pt-8 space-y-6 bg-gray-50 p-6 rounded-lg">
                 <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-6 border-b pb-2">สำหรับอาจารย์/เจ้าหน้าที่ (ไม่ต้องกรอก)</h2>
                 
@@ -286,7 +285,6 @@
                     </table>
                 </div>
 
-                <!-- New tables for sections (4), (7), (8), (9), and (10) based on the image -->
                 <div class="overflow-x-auto mt-6">
                     <table class="w-full border-collapse border border-gray-300 opinion-table mb-6 text-sm">
                         <thead>
@@ -297,7 +295,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <!-- Section (4) Dean's Opinion -->
+                               
                                 <td class="align-top p-4 border border-gray-300">
                                     <div class="flex flex-col h-full">
                                         <div class="flex-grow space-y-4">
@@ -324,7 +322,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <!-- Section (7) Revenue Department, Treasury -->
+                                
                                 <td class="align-top p-4 border border-gray-300">
                                     <div class="flex flex-col h-full">
                                         <div class="flex-grow space-y-4">
@@ -359,7 +357,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <!-- Section (8) Opinion of the Director of Academic Services and Development Office -->
+                               
                                 <td class="align-top p-4 border border-gray-300">
                                     <div class="flex flex-col h-full">
                                         <div class="flex-grow space-y-4">
@@ -376,7 +374,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <!-- Section (9) Opinion of the Head of the Registration Group -->
+                               
                                 <td class="align-top p-4 border border-gray-300">
                                     <div class="flex flex-col h-full">
                                         <div class="flex-grow space-y-4">
@@ -398,7 +396,7 @@
                     </table>
                 </div>
 
-                <!-- Section (10) For the Operating Officer -->
+                
                 <div class="overflow-x-auto mt-6">
                     <div class="p-4 border border-gray-300 bg-gray-100 rounded-lg">
                         <h3 class="text-base font-medium text-gray-700 mb-2">(10) สำหรับเจ้าหน้าที่ผู้ดำเนินการ</h3>
@@ -415,7 +413,7 @@
                 </div>
             </section>
 
-            <!-- Notes Section -->
+            
             <section class="border-t border-gray-200 pt-8 space-y-4">
                 <h2 class="text-xl lg:text-2xl font-bold text-gray-800 mb-4 border-b pb-2">หมายเหตุ</h2>
                 <ul class="list-disc list-inside text-sm text-gray-700 space-y-2">
@@ -426,7 +424,7 @@
                 </ul>
             </section>
             
-            <!-- Submit Button Section -->
+            
             <div class="flex justify-end pt-8 border-t border-gray-200">
                 <button type="submit"
                         class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg shadow-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors text-lg">
@@ -448,7 +446,7 @@
         </form>
     </div>
 
-    <!-- Link to the JavaScript file -->
+    
     <script src="Form.js"></script>
 </body>
 </html>
