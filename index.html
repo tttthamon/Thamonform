@@ -129,9 +129,10 @@
     <h1>Event Booking</h1>
 
     <label for="name">ชื่อ-สกุล</label>
-    <input type="text" id="name" name="name" required 
-       pattern="^[ก-๙\s]+$" 
-       title="กรุณากรอกชื่อ-สกุลด้วยอักษรไทยเท่านั้น" />
+<input type="text" id="name" name="name" required
+  pattern="^\S+(?:\s+\S+)+$"
+  title="กรุณากรอกชื่อ-สกุลอย่างน้อย 2 คำ" />
+
     
 
 
