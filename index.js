@@ -42,3 +42,10 @@ document.getElementById('bookingForm').addEventListener('submit', function(e) {
 document.getElementById('closeModal').addEventListener('click', function () {
   document.getElementById('successModal').style.display = 'none';
 });
+
+ document.getElementById('pageSelector').addEventListener('change', function() {
+      const selectedPage = this.value;
+      if (selectedPage) {
+        window.location.href = selectedPage;
+      }
+    });

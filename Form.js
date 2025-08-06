@@ -136,3 +136,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return true;
     }
 });
+ document.getElementById('pageSelector').addEventListener('change', function() {
+      const selectedPage = this.value;
+      if (selectedPage) {
+        window.location.href = selectedPage;
+      }
+    });

@@ -122,8 +122,10 @@
 
 </head>
 <body>
-
+  
+  
   <form id="bookingForm">
+    
     <h1>Event Booking</h1>
 
     <label for="name">ชื่อ-สกุล</label>
@@ -153,6 +155,22 @@
     <div class="error" id="errormessage"></div>
 
     <button type="submit">จองตั๋ว</button>
+   <nav class="bg-blue-800 text-white px-6 py-3 shadow-md">
+  <div class="max-w-6xl mx-auto flex justify-between items-center">
+    
+    <div class="max-w-md mx-auto bg-white p-4 rounded shadow">
+    <label for="pageSelector" class="block mb-2 text-lg font-semibold text-gray-700">
+      ▾ เลือกหน้าที่ต้องการ
+    </label>
+    <select id="pageSelector" class="w-full p-2 border border-gray-300 rounded">
+      <option value="">-- กรุณาเลือกหน้า --</option>
+      <option value="index.html">📄 จองตั๋ว</option>
+      <option value="HealthSurvey.html">🩺 แบบสอบถามสุขภาพ</option>
+      <option value="Form.html">📝 คำร้องขอโอนย้ายสาขาวิชา</option>
+    </select>
+  </div>
+
+
   </form>
 
   

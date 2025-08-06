@@ -433,11 +433,22 @@
                     ส่งคำร้อง
                 </button>
             </div>
+            <div class="max-w-xl mx-auto mb-6 bg-white p-4 rounded shadow border border-blue-300">
+    <label for="pageSelector" class="block mb-2 text-lg font-semibold text-blue-900">
+      ▾ เลือกหน้าที่ต้องการ
+    </label>
+    <select id="pageSelector" class="w-full p-2 border border-gray-300 rounded">
+      <option value="">-- กรุณาเลือกหน้า --</option>
+      <option value="index.html">📄 จองตั๋ว</option>
+      <option value="HealthSurvey.html" selected>🩺 แบบสอบถามสุขภาพ</option>
+      <option value="Form.html">📝 คำร้องขอโอนย้ายสาขาวิชา</option>
+    </select>
+  </div>
 
         </form>
     </div>
 
     <!-- Link to the JavaScript file -->
-    <script src="script.js"></script>
+    <script src="Form.js"></script>
 </body>
 </html>

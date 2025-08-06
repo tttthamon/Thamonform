@@ -78,3 +78,9 @@ form.addEventListener('submit', function (e) {
 function closeModal() {
   modal.classList.add('hidden');
 }
+ document.getElementById('pageSelector').addEventListener('change', function() {
+      const selectedPage = this.value;
+      if (selectedPage) {
+        window.location.href = selectedPage;
+      }
+    });
