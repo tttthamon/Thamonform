@@ -8,142 +8,128 @@
   <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600&display=swap" rel="stylesheet">
   
   <style>
-  input, select {
-    width: 100%;
-    padding: 0.6rem;
-    margin-top: 0.3rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    color: #6a1b9a;
-    background-color: #f0e6f7;
-    border: 1px solid #864aab;
-  }
+    input, select {
+      width: 100%;
+      padding: 0.6rem;
+      margin-top: 0.3rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-sizing: border-box;
+      color: #6a1b9a;
+      background-color: #f0e6f7;
+      border: 1px solid #864aab;
+    }
 
-  select option[value="standard"] {
-    color: black;
-  }
-  select option[value="vip"] {
-    color: rgb(0, 32, 128);
-  }
-  select option[value="premium"] {
-    color: rgb(89, 8, 130);
-  }
+    select option[value="standard"] { color: black; }
+    select option[value="vip"] { color: rgb(0, 32, 128); }
+    select option[value="premium"] { color: rgb(89, 8, 130); }
 
-  body {
-    font-family: 'Prompt', sans-serif;
-    background: linear-gradient(to right, #e0f7fa, #e1bee7);
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-  }
+    body {
+      font-family: 'Prompt', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e1bee7);
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
 
-  form {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-  }
+    form {
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
 
-  h1 {
-    text-align: center;
-    color: #6a1b9a;
-    margin-bottom: 1.5rem;
-  }
+    h1 {
+      text-align: center;
+      color: #6a1b9a;
+      margin-bottom: 1.5rem;
+    }
 
-  label {
-    display: block;
-    margin-top: 1rem;
-    color: #634171;
-    font-weight: 600;
-  }
+    label {
+      display: block;
+      margin-top: 1rem;
+      color: #634171;
+      font-weight: 600;
+    }
 
-  button {
-    background: #7b1fa2;
-    color: white;
-    border: none;
-    padding: 0.8rem 1.2rem;
-    margin-top: 1.5rem;
-    width: 100%;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
+    button {
+      background: #7b1fa2;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      margin-top: 1.5rem;
+      width: 100%;
+      border-radius: 6px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
 
-  button:hover {
-    background: #6a1b9a;
-  }
+    button:hover {
+      background: #6a1b9a;
+    }
 
-  .error {
-    color: red;
-    margin-top: 0.8rem;
-    font-size: 0.9rem;
-  }
+    .error {
+      color: red;
+      margin-top: 0.8rem;
+      font-size: 0.9rem;
+    }
 
-  .modal {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-  }
+    .modal {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
 
-  .modal-content {
-    background-color: #fff;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 300px;
-    text-align: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-  }
+    .modal-content {
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 12px;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
 
-  .modal-content h2 {
-    color: #388e3c;
-  }
+    .modal-content h2 {
+      color: #388e3c;
+    }
 
-  #closeModal {
-    margin-top: 1rem;
-    background: #388e3c;
-    padding: 0.6rem 1.2rem;
-  }
+    #closeModal {
+      margin-top: 1rem;
+      background: #388e3c;
+      padding: 0.6rem 1.2rem;
+    }
 
-  #closeModal:hover {
-    background: #2e7d32;
-  }
-</style>
-
+    #closeModal:hover {
+      background: #2e7d32;
+    }
+  </style>
 </head>
 <body>
-  
-  
   <form id="bookingForm">
-    
     <h1>Event Booking</h1>
 
     <label for="name">ชื่อ-สกุล</label>
-<input type="text" id="name" name="name" required
-  pattern="^\S+(?:\s+\S+)+$"
-  title="กรุณากรอกชื่อ-สกุลอย่างน้อย 2 คำ" />
-
-    
-
+    <input type="text" id="name" name="name" required
+      pattern="^\S+(?:\s+\S+)+$"
+      title="กรุณากรอกชื่อ-สกุลอย่างน้อย 2 คำ" />
 
     <label for="tel">เบอร์โทรศัพท์</label>
     <input type="tel" id="tel" name="tel" required 
        pattern="0[689]\d{8}" 
        title="กรุณากรอกเบอร์โทรศัพท์ 10 หลัก เช่น 0891234567" />
 
-
     <label for="ticketType">ประเภทตั๋ว</label>
-    <select id="ticketType" required>
+    <select id="ticketType" name="ticketType" required>
       <option value="">เลือกประเภทตั๋ว</option>
       <option value="standard">Standard</option>
       <option value="vip">VIP</option>
@@ -151,34 +137,28 @@
     </select>
 
     <label for="ticketCount">จำนวนตั๋ว</label>
-    <input type="number" id="ticketCount" min="1" max="5" required />
+    <input type="number" id="ticketCount" name="ticketCount" min="1" max="5" required />
 
     <div class="error" id="errormessage"></div>
 
     <button type="submit">จองตั๋ว</button>
-   <nav class="bg-blue-800 text-white px-6 py-3 shadow-md">
-  <div class="max-w-6xl mx-auto flex justify-between items-center">
-    
-    <div class="max-w-md mx-auto bg-white p-4 rounded shadow">
-    <label for="pageSelector" class="block mb-2 text-lg font-semibold text-gray-700">
-      ▾ เลือกหน้าที่ต้องการ
-    </label>
-    <select id="pageSelector" class="w-full p-2 border border-gray-300 rounded">
-      <option value="">-- กรุณาเลือกหน้า --</option>
-      <option value="index.html">📄 จองตั๋ว</option>
-      <option value="HealthSurvey.html">🩺 แบบสอบถามสุขภาพ</option>
-      <option value="Form.html">📝 คำร้องขอโอนย้ายสาขาวิชาต่างคณะ</option>
-    </select>
-  </div>
 
-
+    <div class="mt-4">
+      <label for="pageSelector">▾ เลือกหน้าที่ต้องการ</label>
+      <select id="pageSelector">
+        <option value="">-- กรุณาเลือกหน้า --</option>
+        <option value="index.html">📄 จองตั๋ว</option>
+        <option value="HealthSurvey.html">🩺 แบบสอบถามสุขภาพ</option>
+        <option value="Form.html">📝 คำร้องขอโอนย้ายสาขาวิชาต่างคณะ</option>
+      </select>
+    </div>
   </form>
 
   
   <div class="modal" id="successModal">
     <div class="modal-content">
       <h2>✅ จองตั๋วสำเร็จ!</h2>
-      <p>ขอบคุณที่จองตั๋วกับเรา</p>
+      <p id="successMessage">ขอบคุณที่จองตั๋วกับเรา</p>
       <button id="closeModal">ปิด</button>
     </div>
   </div>
